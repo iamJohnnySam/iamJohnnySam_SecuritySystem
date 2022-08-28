@@ -3,6 +3,7 @@ import email
 import time
 import numpy as np
 import shutil
+import logging
 from ..Global.globalVariables import *
 
 
@@ -16,16 +17,15 @@ def outlookConnect ():
     outlook.login(em, pw)
     outlook.select(mailbox = 'Security', readonly=False)
 
-def outlookGetCCTV ():
+def outlookGetCCTV (mod1, mod2):
     (result, messages) = outlook.search(None, 'UnSeen')
     if result == "OK":
         for message in messages[0].split():
             try: 
                 ret, data = outlook.fetch(message,'(RFC822)')
             except:
-                print("No new emails to read.")
+                logging.info("No new emails to read.")
                 outlook.connection.close()
-                exit()
 
             msg = email.message_from_bytes(data[0][1])
             Date = msg['Date']
@@ -47,7 +47,7 @@ def outlookGetCCTV ():
                 fp.write(image)
                 fp.close()
             
-                # IMAGE
+                # Prepare Image
                 img = Image.open(att_path)
                 img = ImageOps.grayscale(img)
                 img = np.asarray(img,dtype="float32")/255
@@ -56,10 +56,7 @@ def outlookGetCCTV ():
                 Sus = False
                 # ML CODE
                 if "A01" in filename:
-                    modelA01.set_tensor(input_details1[0]['index'], img)
-                    modelA01.invoke()
-                    output_data = modelA01.get_tensor(output_details1[0]['index'])
-                    output = output_data[0][0]
+                    
                     if (output > 0.95):
                         Sus = True
             
