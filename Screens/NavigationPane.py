@@ -9,6 +9,7 @@ def addButton(btnName):
 
 def createNavigationPane():
 	layout = QHBoxLayout()
+	layout.addWidget(addButton('Overview'))
 	layout.addWidget(addButton('Security'))
 	layout.addWidget(addButton('Solar Monitoring'))
 	layout.addWidget(addButton('Alarms'))

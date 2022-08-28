@@ -4,6 +4,11 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLay
 from Screens.TitlePane import createTitlePane
 from Screens.NavigationPane import createNavigationPane
 
+import logging
+from datetime import datetime
+logging.basicConfig(filename="log"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log", encoding='utf-8', level=logging.INFO)
+logging.info('System Started')
+
 app = QApplication (sys.argv)
 app.setStyle('Fusion')
 
@@ -12,9 +17,9 @@ windowMain.setWindowTitle ("iamJohnnySam Raspberry Pi Security & Monitoring Syst
 
 # Setting main layout
 layoutMain = QVBoxLayout()
-layoutMain.addLayout(createTitlePane())
-layoutMain.addWidget(QPushButton('Placeholder'))
-layoutMain.addLayout(createNavigationPane())
+layoutMain.addLayout(createTitlePane(), 1)
+layoutMain.addWidget(QPushButton('Placeholder'), 8)
+layoutMain.addLayout(createNavigationPane(), 1)
 
 
 windowMain.setLayout(layoutMain)
