@@ -1,5 +1,7 @@
+from pickle import TRUE
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout
 from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtGui import QPixmap
 
 widgetsTitle = {"Connection": [],
 				"Header": [],
@@ -14,9 +16,10 @@ def createLabelConnection ():
 
 def createMainArea ():
 	x = 600
+	logoWidth = 50
 
 	lbl = QLabel("iamJohnnySam")
-	lbl.setFixedSize(QSize(x,50))
+	lbl.setFixedSize(QSize(x-logoWidth,logoWidth))
 	lbl.setAlignment(Qt.AlignCenter)
 	widgetsTitle["Header"].append(lbl)
 
@@ -25,10 +28,21 @@ def createMainArea ():
 	lbl.setAlignment(Qt.AlignCenter)
 	widgetsTitle["Notification"].append(lbl)
 
-	lyt = QVBoxLayout()
-	lyt.addWidget(widgetsTitle["Header"][-1])
-	lyt.addWidget(widgetsTitle["Notification"][-1])
-	return lyt
+	logo = QLabel()
+	image = QPixmap("Screens/Images/logo.png")
+	logo.setPixmap(image)
+	logo.setAlignment(Qt.AlignCenter)
+	logo.setFixedSize(QSize(logoWidth,logoWidth))
+	logo.setScaledContents(1)
+
+	lyt2 = QHBoxLayout()
+	lyt2.addWidget(logo)
+	lyt2.addWidget(widgetsTitle["Header"][-1])
+
+	lyt1 = QVBoxLayout()
+	lyt1.addLayout(lyt2)
+	lyt1.addWidget(widgetsTitle["Notification"][-1])
+	return lyt1
 
 def createTitlePane():
 	layout = QHBoxLayout()
