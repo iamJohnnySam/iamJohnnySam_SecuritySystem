@@ -2,9 +2,9 @@ import sys
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QMainWindow
 
-class UIApp(QMainWindow):
+class UIManager(QMainWindow):
     def __init__(self):
-        super(UIApp, self).__init__()
+        super(UIManager, self).__init__()
         loadUi("UI/uiApplication.ui", self)
         #self.lblLogo.setText("<html><head/><body><p><img src=':/Images/logo.png' width='100' height='100'></p></body></html>")
 
