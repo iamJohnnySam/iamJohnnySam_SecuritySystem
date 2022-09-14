@@ -15,7 +15,7 @@ from email.utils import formatdate
 
 from PIL import Image, ImageOps
 
-class getEmails():
+class CCTVEmailManager():
     att_path = "No attachment found."
     download_folder="/home/pi/CCTV/Images"
     save_folder="/home/pi/CCTV/Detected"

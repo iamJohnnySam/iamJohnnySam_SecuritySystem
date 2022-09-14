@@ -1,0 +1,6 @@
+class Power:
+    pass
+
+
+
+
