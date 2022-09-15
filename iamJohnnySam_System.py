@@ -3,7 +3,11 @@ import logging
 from datetime import datetime
 from PyQt5.QtWidgets import QApplication
 
-import Garden, Security, Power, Workout, UIManager
+from Security.Security import Security
+from Garden.Garden import Garden
+from Power.Power import Power
+from Workout.Workout import Workout
+from UIManager.UIManager import UIManager
 
 ### Event Logging
 logging.basicConfig(filename="log"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log", encoding='utf-8', level=logging.INFO)
